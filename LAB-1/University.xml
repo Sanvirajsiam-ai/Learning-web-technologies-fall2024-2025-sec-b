@@ -1,0 +1,29 @@
+<University>
+    <students>
+        <sl_no> 23 </sl_no>
+        <name>
+        <1st_name>John</1st_name>
+        <last_name>Carter</last_name>
+        </name>
+        <admision_date>25/12/2015</admision_date>
+    </students>
+   
+    <students>
+        <sl_no> 29 </sl_no>
+       <name>
+        <1st_name>Bob</1st_name>
+        <last_name>Marshal</last_name>
+        </name>
+        <admision_date>13/01/1999</admision_date>
+    </students>
+
+      <students>
+        <sl_no> 35 </sl_no>
+        <name>
+        <1st_name>Clark</1st_name>
+        <last_name>Kent</last_name>
+        </name>
+        <admision_date>17/06/2005</admision_date>
+    </students>
+
+</University>
