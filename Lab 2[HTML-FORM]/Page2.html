@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { display: flex; flex-direction: column; min-height: 100vh; border: 1px solid #000; margin: 10px; }
+        header, footer { text-align: center; padding: 10px; background-color: #f1f1f1; border-bottom: 1px solid #000; }
+        footer { border-top: 1px solid #000; }
+        .content { display: flex; flex: 1; border-top: 1px solid #000; border-bottom: 1px solid #000; }
+        .sidebar, .external-links { width: 20%; padding: 10px; background-color: #f9f9f9; border-right: 1px solid #000; }
+        .external-links { border-left: 1px solid #000; }
+        .main { flex: 1; padding: 20px; text-align: center; }
+        .sidebar a, .external-links a { display: block; margin: 5px 0; color: blue; text-decoration: none; }
+        .sidebar a:hover, .external-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>First HTML Site</h1>
+    </header>
+    
+    <div class="content">
+        <div class="sidebar">
+            <h3>Links</h3>
+            <a href="page1.html">Page-1</a>
+            <a href="page2.html">Page-2</a>
+        </div>
+        
+        <div class="main">
+            <h2>Page-2</h2>
+            <p>I am at page-2</p>
+        </div>
+        
+        <div class="external-links">
+            <h3>External Links</h3>
+            <a href="https://www.google.com" target="_blank">Google</a>
+            <a href="https://www.yahoo.com" target="_blank">Yahoo</a>
+            <a href="https://www.microsoft.com" target="_blank">Microsoft</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Copyright</p>
+    </footer>
+</div>
+
+</body>
+</html>
