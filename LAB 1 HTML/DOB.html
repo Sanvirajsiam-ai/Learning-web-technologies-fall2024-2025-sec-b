@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Forms</title>
+  <style>
+    .box {
+      border: 2px solid #000;
+      padding: 10px;
+      margin: 10px ;
+      width:15%
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="box">
+  <h1>Date of Birth</h1>
+  <form> 
+    <label for="dd">dd:</label>
+    <input type="number" id="dd" name="DD" min="1" max="31"><br>
+    <label for="mm">mm:</label>
+    <input type="number" id="mm" name="MM" min="1" max="12"><br>
+    <label for="yyyy">yyyy:</label>
+    <input type="number" id="yyyy" name="YYYY" min="1900" max="2023"><br>
+    <input type="submit" value="Submit">
+  </form>
+</div>

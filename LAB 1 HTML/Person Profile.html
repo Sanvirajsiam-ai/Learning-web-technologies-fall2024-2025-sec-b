@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .row label {
+            width: 100px;
+            font-weight: bold;
+        }
+        .row input[type="text"],
+        .row input[type="email"],
+        .row select {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .row input[type="radio"] {
+            margin-right: 5px;
+        }
+        .row input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .row input[type="file"] {
+            width: 100%;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .button-container input[type="submit"],
+        .button-container input[type="reset"] {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>PERSON PROFILE</h2>
+    <form>
+        <div class="row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="row">
+            <label>Gender</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>
+        <div class="row">
+            <label for="dob">Date of Birth</label>
+            <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy">
+        </div>
+        <div class="row">
+            <label for="blood">Blood Group</label>
+            <select id="blood" name="blood">
+                <option value="a+">A+</option>
+                <option value="a-">A-</option>
+                <option value="b+">B+</option>
+                <option value="b-">B-</option>
+                <option value="ab+">AB+</option>
+                <option value="ab-">AB-</option>
+                <option value="o+">O+</option>
+                <option value="o-">O-</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>Degree</label>
+            <input type="checkbox" id="ssc" name="degree" value="ssc">
+            <label for="ssc">SSC</label>
+            <input type="checkbox" id="hsc" name="degree" value="hsc">
+            <label for="hsc">HSC</label>
+            <input type="checkbox" id="bsc" name="degree" value="bsc">
+            <label for="bsc">BSc.</label>
+            <input type="checkbox" id="msc" name="degree" value="msc">
+            <label for="msc">MSc.</label>
+        </div>
+        <div class="row">
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" name="photo">
+        </div>
+        <div class="button-container">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
