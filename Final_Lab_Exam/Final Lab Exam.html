@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Management System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        input, button { padding: 8px; margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .error { color: red; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loginSection">
+            <h2>Login</h2>
+            <div class="form-group">
+                <input type="text" id="loginUsername" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" placeholder="Password">
+            </div>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="mainSection" style="display: none;">
+            <h2>Employee Management System</h2>
+            
+            
+            <h3>Register New Employee</h3>
+            <div class="form-group">
+                <input type="text" id="empName" placeholder="Employee Name">
+                <span class="error" id="nameError">Name cannot be empty</span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="empContact" placeholder="Contact Number">
+                <span class="error" id="contactError">Contact cannot be empty</span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="empUsername" placeholder="Username">
+                <span class="error" id="usernameError">Username cannot be empty</span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="empPassword" placeholder="Password">
+                <span class="error" id="passwordError">Password cannot be empty</span>
+            </div>
+            <button onclick="registerEmployee()">Register Employee</button>
+
+            
+            <h3>Search Employee</h3>
+            <div class="form-group">
+                <input type="text" id="searchInput" placeholder="Search by name or username">
+            </div>
+
+            
+            <table id="employeeTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Username</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        
+        let employees = JSON.parse(localStorage.getItem('employees')) || [];
+        const adminCredentials = { username: 'admin', password: 'admin123' };
+
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('mainSection').style.display = 'block';
+                displayEmployees();
+            } else {
+                alert('Invalid credentials!');
+            }
+        }
+
+        function validateInput(input, errorId) {
+            if (!input || input.trim() === '') {
+                document.getElementById(errorId).style.display = 'block';
+                return false;
+            }
+            document.getElementById(errorId).style.display = 'none';
+            return true;
+        }
+
+        function registerEmployee() {
+            const name = document.getElementById('empName').value;
+            const contact = document.getElementById('empContact').value;
+            const username = document.getElementById('empUsername').value;
+            const password = document.getElementById('empPassword').value;
+
+            
+            const isValid = 
+                validateInput(name, 'nameError') &&
+                validateInput(contact, 'contactError') &&
+                validateInput(username, 'usernameError') &&
+                validateInput(password, 'passwordError');
+
+            if (!isValid) return;
+
+            const employee = {
+                id: Date.now(),
+                name,
+                contact,
+                username,
+                password
+            };
+
+            employees.push(employee);
+            localStorage.setItem('employees', JSON.stringify(employees));
+            displayEmployees();
+            clearForm();
+        }
+
+        function updateEmployee(id) {
+            const employee = employees.find(emp => emp.id === id);
+            if (employee) {
+                document.getElementById('empName').value = employee.name;
+                document.getElementById('empContact').value = employee.contact;
+                document.getElementById('empUsername').value = employee.username;
+                document.getElementById('empPassword').value = employee.password;
+                
+                
+                deleteEmployee(id);
+            }
+        }
+
+        function deleteEmployee(id) {
+            employees = employees.filter(emp => emp.id !== id);
+            localStorage.setItem('employees', JSON.stringify(employees));
+            displayEmployees();
+        }
+
+        function displayEmployees(searchTerm = '') {
+            const filteredEmployees = employees.filter(emp => 
+                emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                emp.username.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+
+            filteredEmployees.forEach(emp => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${emp.name}</td>
+                    <td>${emp.contact}</td>
+                    <td>${emp.username}</td>
+                    <td>
+                        <button onclick="updateEmployee(${emp.id})">Update</button>
+                        <button onclick="deleteEmployee(${emp.id})">Delete</button>
+                    </td>
+                `;
+                employeeList.appendChild(row);
+            });
+        }
+
+        function clearForm() {
+            document.getElementById('empName').value = '';
+            document.getElementById('empContact').value = '';
+            document.getElementById('empUsername').value = '';
+            document.getElementById('empPassword').value = '';
+        }
+
+        // Ajax search implementation
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                const searchTerm = $(this).val();
+                displayEmployees(searchTerm);
+            });
+        });
+    </script>
+</body>
+</html>
